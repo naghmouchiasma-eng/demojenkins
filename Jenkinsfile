@@ -1,10 +1,7 @@
 
 pipeline {
     agent any
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        DOCKER_IMAGE = "tondockerhub/demo-jenkins-node"
-    }
+    
     stages {
         stage('Checkout') {
             steps {
