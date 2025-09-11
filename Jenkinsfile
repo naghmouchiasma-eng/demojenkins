@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ton-utilisateur/demo-jenkins-node.git'
+                git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins/'
             }
         }
         stage('Install dependencies') {
