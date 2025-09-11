@@ -1,7 +1,9 @@
 
 pipeline {
     agent any
-    
+     environment {
+         DOCKER_IMAGE = "node"
+    }
     stages {
         stage('Checkout') {
             steps {
