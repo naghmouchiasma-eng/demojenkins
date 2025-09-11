@@ -10,11 +10,7 @@ pipeline {
                 git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins/'
             }
         }
-        stage('Install dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
+        
         stage('Build Docker Image') {
             steps {
                 sh '''
