@@ -5,8 +5,8 @@ pipeline {
          DOCKER_IMAGE = "node"
     }
     tools {
-    nodejs "node"  // nom que tu as donné dans Jenkins
-}
+          nodejs "node"  // nom que tu as donné dans Jenkins
+    }
     stages {
         stage('Checkout') {
             steps {
