@@ -1,17 +1,37 @@
+
 pipeline {
     agent any
-
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        DOCKER_IMAGE = "tondockerhub/demo-jenkins-node"
+    }
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World rawdha*****'
-            }
-        }
         stage('Checkout') {
             steps {
-                git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins/'
+                git branch: 'main', url: 'https://github.com/ton-utilisateur/demo-jenkins-node.git'
             }
         }
-   
+        stage('Install dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .
+                docker tag $DOCKER_IMAGE:$BUILD_NUMBER $DOCKER_IMAGE:latest
+                '''
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                sh '''
+                echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
+                docker push $DOCKER_IMAGE:$BUILD_NUMBER
+                docker push $DOCKER_IMAGE:latest
+                '''
+            }
+        }
     }
 }
