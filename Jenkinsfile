@@ -6,7 +6,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_IMAGE = "asma206/demojenkins-node"
+        DOCKER_IMAGE = "asma206/jenkins-agent"
     }
     stages {
         stage('Check Docker') {
