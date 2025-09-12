@@ -4,7 +4,7 @@ pipeline {
         DOCKER_IMAGE = "asma206/demojenkins-node"
     }
     tools {
-        nodejs "node"  // nom configuré dans Manage Jenkins → NodeJS
+        nodejs "node"  // ton installation NodeJS
     }
     stages {
         stage('Check Docker') {
