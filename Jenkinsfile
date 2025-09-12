@@ -2,6 +2,7 @@ pipeline {
    agent any 
    environment {
         DOCKER_IMAGE = "asma206/demojenkins-node"
+        DOCKERHUB_CREDENTIALS = credentials('asmadockerhub')
     }
    
    tools {
