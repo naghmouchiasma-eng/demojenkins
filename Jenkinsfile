@@ -15,7 +15,10 @@ pipeline {
           dockerTool "docker"
            
     }
-    stage('Setup Docker') {
+    
+   
+    stages {
+       stage('Setup Docker') {
        steps {
            script {
                 def dockerHome = tool name: 'docker', type: 'dockerTool'
@@ -24,8 +27,6 @@ pipeline {
              }
            }
         }
-   
-    stages {
         stage('Checkout') {
             steps {
                 git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins/'
