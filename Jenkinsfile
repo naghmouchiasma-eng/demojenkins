@@ -8,7 +8,7 @@ pipeline {
           nodejs "node"  // nom que tu as donné dans Jenkins
            
     }
-    tools {
+    tools { 
           docker "docker"  // nom que tu as donné dans Jenkins
            
     }
