@@ -8,10 +8,10 @@ pipeline {
           nodejs "node"  // nom que tu as donné dans Jenkins
            
     }
-    tools { 
-          docker "docker"  // nom que tu as donné dans Jenkins
-           
-    }
+    
+    tools {
+    dockerTool "docker"
+     }
     stages {
         stage('Checkout') {
             steps {
