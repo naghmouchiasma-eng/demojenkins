@@ -27,6 +27,15 @@ pipeline {
                 '''
             }
         }
+       stage('Push to Docker Hub') {
+            steps {
+                sh '''
+                echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
+                docker push $DOCKER_IMAGE:$BUILD_NUMBER
+                docker push $DOCKER_IMAGE:latest
+                '''
+            }
+        }
       
         
     }
