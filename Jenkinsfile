@@ -1,28 +1,41 @@
 pipeline {
     agent {
         docker {
-            image 'docker:20.10-dind'
-            args '--privileged'
+            image 'asma206/jenkins-agent:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     environment {
-        DOCKER_IMAGE = "asma206/jenkins-agent"
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        DOCKER_IMAGE = "asma206/demojenkins-node"
     }
     stages {
-        stage('Check Docker') {
+        stage('Checkout') {
             steps {
-                sh 'docker --version'
+                git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins.git'
+            }
+        }
+        stage('Install dependencies') {
+            steps {
+                sh 'npm install'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .'
+                sh '''
+                docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .
+                docker tag $DOCKER_IMAGE:$BUILD_NUMBER $DOCKER_IMAGE:latest
+                '''
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                sh '''
+                echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
+                docker push $DOCKER_IMAGE:$BUILD_NUMBER
+                docker push $DOCKER_IMAGE:latest
+                '''
             }
         }
     }
 }
-
-
-
-
-
