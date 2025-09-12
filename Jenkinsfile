@@ -6,6 +6,7 @@ pipeline {
     }
     tools {
           nodejs "node"  // nom que tu as donné dans Jenkins
+          docker "docker"  
     }
     stages {
         stage('Checkout') {
