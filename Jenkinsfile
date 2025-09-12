@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {
+        docker { 
             image 'asma206/jenkins-agent:latest'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
