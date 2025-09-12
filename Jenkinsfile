@@ -5,6 +5,7 @@ pipeline {
             image 'docker:20.10'
             args '--privileged -v /var/lib/docker'
         }
+   }
      environment {
          DOCKER_IMAGE = "asma206/demojenkins-node"
 
