@@ -1,7 +1,7 @@
 pipeline {
    agent any 
    
-    stages {
+    stages { 
         stage('Checkout') {
             steps {
                 git branch: 'dev', url: 'https://github.com/naghmouchiasma-eng/demojenkins.git'
