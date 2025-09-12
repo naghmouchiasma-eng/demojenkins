@@ -1,14 +1,15 @@
 pipeline {
-    agent {
-        docker { 
-            image 'asma206/jenkins-agent:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+   agent {
+        docker {
+            image 'docker:24.0.2-dind' // Docker-in-Docker avec docker CLI
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
+
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         DOCKER_IMAGE = "asma206/demojenkins-node"
     }
+   
     stages {
         stage('Checkout') {
             steps {
