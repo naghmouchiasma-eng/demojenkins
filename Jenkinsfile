@@ -1,8 +1,12 @@
 
 pipeline {
-    agent any 
+   agent {
+        docker {
+            image 'docker:20.10'
+            args '--privileged -v /var/lib/docker'
+        }
      environment {
-         DOCKER_IMAGE = "asma206/node"
+         DOCKER_IMAGE = "asma206/demojenkins-node"
 
     }
     tools {
