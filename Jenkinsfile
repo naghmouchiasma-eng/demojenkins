@@ -1,5 +1,9 @@
 pipeline {
    agent any 
+   environment {
+        DOCKER_IMAGE = "asma206/demojenkins-node"
+    }
+   
    tools {
           nodejs "node"  // nom que tu as donné dans Jenkins
        
