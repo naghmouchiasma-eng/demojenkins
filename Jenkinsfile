@@ -15,7 +15,15 @@ pipeline {
           dockerTool "docker"
            
     }
-    
+    stage('Setup Docker') {
+       steps {
+           script {
+                def dockerHome = tool name: 'docker', type: 'dockerTool'
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
+                sh 'docker --version'
+             }
+           }
+        }
    
     stages {
         stage('Checkout') {
