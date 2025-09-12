@@ -3,7 +3,7 @@ pipeline {
     agent any 
      environment {
          DOCKER_IMAGE = "asma206/demojenkins-node"
-         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+
     }
     tools {
           nodejs "node"  // nom que tu as donné dans Jenkins
