@@ -2,7 +2,7 @@
 pipeline {
     agent any 
      environment {
-         DOCKER_IMAGE = "asma206/demojenkins-node"
+         DOCKER_IMAGE = "asma206/node"
 
     }
     tools {
